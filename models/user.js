@@ -13,18 +13,31 @@ User.init(
         id: {
             type: DataTypes.BIGINT,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,
-            unique: true
+            unique: true,
+            allowNull: false,
+            validate: {
+                notNull: true,
+                isEmail: true
+            }
         },
         firstName: {
             type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: true
+            }
             // defaultValue: 'test' This is used to define default value for a column
         },
         lastName: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: true
+            }
         }
     },
     {
@@ -35,3 +48,7 @@ User.init(
         // timestamps: false This flag enables/disables the timestamps in database
     }
 )
+
+User.sync({ force: true })
+
+module.exports = User;
