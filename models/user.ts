@@ -1,11 +1,11 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../DB/connect");
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../DB/connect";
 
 class User extends Model {
     //accessor
-    getFullName() {
-        return [this.firstName, this.lastName].join(' ')
-    }
+    // getFullName() {
+    //     return [this.firstName, this.lastName].join(' ')
+    // }
 }
 
 User.init(
@@ -51,4 +51,4 @@ User.init(
 
 User.sync({ force: true })
 
-module.exports = User;
+export default User;

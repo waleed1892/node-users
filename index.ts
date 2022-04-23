@@ -1,7 +1,8 @@
 require('dotenv').config()
-const express = require('express');
-const sequelize = require('./DB/connect');
-const userRouter = require('./routes/user');
+require('express-async-errors');
+import express from 'express';
+import sequelize from './DB/connect';
+import userRouter from './routes/user';
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use('/api/v1/users', userRouter)
 const port = process.env.PORT || 3000
 const start = async () => {
     try {
-        await sequelize.authenticate();
+        await sequelize.authenticate()
         console.log('Connection has been established successfully.');
         app.listen(port, () => {
             console.log(`App listening on port ${port}`);
