@@ -4,6 +4,7 @@ import express from 'express';
 import sequelize from './src/DB/connect';
 import errorMiddleware from './src/middleware/error';
 import notFound from './src/middleware/not-found';
+import authRouter from './src/routes/auth';
 import userRouter from './src/routes/user';
 
 dotenv.config();
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json())
 
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/auth', authRouter)
 
 app.use(notFound)
 app.use(errorMiddleware)
