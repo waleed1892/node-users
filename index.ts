@@ -1,14 +1,21 @@
-require('dotenv').config()
+import dotenv from 'dotenv';
 require('express-async-errors');
 import express from 'express';
-import sequelize from './DB/connect';
-import userRouter from './routes/user';
+import sequelize from './src/DB/connect';
+import errorMiddleware from './src/middleware/error';
+import notFound from './src/middleware/not-found';
+import userRouter from './src/routes/user';
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json())
 
 app.use('/api/v1/users', userRouter)
+
+app.use(notFound)
+app.use(errorMiddleware)
 
 const port = process.env.PORT || 3000
 const start = async () => {

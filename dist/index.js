@@ -12,14 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('dotenv').config();
+const dotenv_1 = __importDefault(require("dotenv"));
 require('express-async-errors');
 const express_1 = __importDefault(require("express"));
-const connect_1 = __importDefault(require("./DB/connect"));
-const user_1 = __importDefault(require("./routes/user"));
+const connect_1 = __importDefault(require("./src/DB/connect"));
+const error_1 = __importDefault(require("./src/middleware/error"));
+const not_found_1 = __importDefault(require("./src/middleware/not-found"));
+const user_1 = __importDefault(require("./src/routes/user"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use('/api/v1/users', user_1.default);
+app.use(not_found_1.default);
+app.use(error_1.default);
 const port = process.env.PORT || 3000;
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
