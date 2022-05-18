@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import NotFound from "../errors/NotFound";
-import User from "../models/user";
+import NotFound from "../../errors/NotFound";
+import User from "./userModel";
 
 export const getUsers = async (req: Request, res: Response) => {
     const users = await User.findAll();

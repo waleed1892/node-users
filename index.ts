@@ -4,8 +4,8 @@ import express from 'express';
 import sequelize from './src/DB/connect';
 import errorMiddleware from './src/middleware/error';
 import notFound from './src/middleware/not-found';
-import authRouter from './src/routes/auth';
-import userRouter from './src/routes/user';
+import authRouter from './src/modules/auth/authRouter';
+import userRouter from './src/modules/user/userRotuer';
 
 dotenv.config();
 

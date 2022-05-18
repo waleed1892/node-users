@@ -1,5 +1,5 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from "sequelize";
-import sequelize from "../DB/connect";
+import sequelize from "../../DB/connect";
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 

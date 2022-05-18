@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
-import User from '../models/user';
-import UnAuthenticated from '../errors/UnAuthenticated';
+import User from '../user/userModel';
+import UnAuthenticated from '../../errors/UnAuthenticated';
 
 export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
